@@ -9,6 +9,7 @@ func SetupRoute(app *bootstrap.Application){
   apiRouter := app.Engine.Group("/api")
   defaultController := controller.DefaultController{}
   apiRouter.Any("/", defaultController.Default)
+  
   versions.Setup(app, apiRouter)
 
   noRouteController := controller.NotFoundController{}

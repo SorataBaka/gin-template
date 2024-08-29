@@ -11,6 +11,5 @@ func (defaultController *DefaultController)Default(ginContext *gin.Context){
     Message: "OK",
     Code: "OK",
     Path: ginContext.FullPath(),
-    Data: nil,
   })
 }

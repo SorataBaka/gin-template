@@ -5,5 +5,4 @@ type DefaultResponse struct {
   Message string `json:"message"`
   Code string `json:"code"`
   Path string `json:"path"`
-  Data any `json:"data"`
 }
