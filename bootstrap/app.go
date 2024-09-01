@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+  "go.mongodb.org/mongo-driver/mongo"
 )
 
 type Application struct {
@@ -12,10 +13,10 @@ type Application struct {
   TimeoutDuration *time.Duration
   Context *context.Context
   Engine *gin.Engine
+  Database *mongo.Database
 }
 
-func InitializeApp()(*Application){
-  env := InitializeEnv()
+func InitializeApp(env *EnvObject, db *mongo.Database)(*Application){
   TimeoutDuration := time.Duration(time.Second * time.Duration(env.DURATION))
   ctx, cancel := context.WithTimeout(context.Background(), TimeoutDuration)
   defer cancel()
@@ -30,6 +31,7 @@ func InitializeApp()(*Application){
   app.TimeoutDuration = &TimeoutDuration
   app.Context = &ctx
   app.Engine = engine
+  app.Database = db
 
   return app
 }

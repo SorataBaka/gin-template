@@ -12,5 +12,4 @@ func (defaultController *DefaultController)Default(ginContext *gin.Context){
     Code: "OK",
     Path: ginContext.FullPath(),
   })
-  
 }

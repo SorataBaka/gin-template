@@ -10,6 +10,8 @@ type EnvObject struct {
 	PORT uint16 `mapstructure:"PORT"`
 	GIN_MODE string `mapstructure:"GIN_MODE"`
 	DURATION uint8 `mapstructure:"DURATION"`
+	MONGODB_URI string `mapstructure:"MONGODB_URI"`
+	MONGODB_DATABASE string `mapstructure:"MONGODB_DATABASE"`
 }
 
 func InitializeEnv() *EnvObject {
@@ -29,6 +31,12 @@ func InitializeEnv() *EnvObject {
 		log.Fatal("Could not load environmental variables")
 	}
 
+	if env.MONGODB_URI == "" {
+		log.Fatal("MONGODB_URI is not provided")
+	}
+	if env.MONGODB_DATABASE == "" {
+		log.Fatal("MONGO_DATABASE is not provided")
+	}
 	log.Printf("Running on " + env.APP_ENV + " mode")
 	if env.PORT == 3000 {
 		log.Printf("Running on default port 3000")
